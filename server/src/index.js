@@ -1,6 +1,6 @@
 import express from 'express';
 import { Server as SocketServer } from 'socket.io';
-import { NODE_ENV, PORT } from './config.js';
+import { CLIENT_URL, NODE_ENV, PORT } from './config.js';
 import http from 'http';
 import morgan from 'morgan';
 import cors from 'cors';
@@ -19,7 +19,7 @@ const server = http.createServer(app);
 
 const io = new SocketServer(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: CLIENT_URL,
   },
 });
 
