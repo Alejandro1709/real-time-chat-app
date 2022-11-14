@@ -24,7 +24,9 @@ const io = new SocketServer(server, {
 });
 
 io.on('connection', (socket) => {
-  console.log(`Client connected: ${socket.id}`);
+  socket.on('client:sentmessage', (message) => {
+    socket.broadcast.emit('server:sendmessage', message);
+  });
 });
 
 server.listen(PORT, () =>
