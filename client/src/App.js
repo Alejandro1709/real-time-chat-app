@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import './App.css';
 
-const socket = io.connect('http://localhost:2000');
+const socket = io.connect(process.env.REACT_APP_SERVER_URL);
 
 function App() {
   const [messagee, setMessagee] = useState('');
