@@ -17,10 +17,14 @@ if (NODE_ENV === 'development') {
 
 const server = http.createServer(app);
 
-const io = new SocketServer(httpServer, {
+const io = new SocketServer(server, {
   cors: {
     origin: 'http://localhost:3000',
   },
+});
+
+io.on('connection', (socket) => {
+  console.log(`Client connected: ${socket.id}`);
 });
 
 server.listen(PORT, () =>
